@@ -43,17 +43,17 @@ export default function Hero() {
 
       {/* Liquid Glass Blobs */}
       <div className={styles.glassBlobs}>
-        <motion.div 
+        <motion.div
           className={styles.blob1}
           animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <motion.div 
+        <motion.div
           className={styles.blob2}
           animate={{ x: [0, -40, 0], y: [0, 60, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
         />
-        
+
       </div>
 
       {/* Dark Overlay */}
@@ -70,7 +70,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Objavte krajinu Tatrickej prírody
+          Objavte krásu našej prírody
         </motion.span>
 
         <motion.h1
@@ -79,7 +79,6 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Rybársky spolok
           <br />
           <span className={styles.titleAccent}>MO SRZ Spišská Belá</span>
         </motion.h1>

@@ -183,6 +183,63 @@ export default function UniversalEditor() {
                 </div>
             )}
 
+            {activeEditor.type === 'product' && (
+              <>
+                <div className={styles.inputGroup}>
+                  <label>Názov produktu</label>
+                  <input name="name" value={formData.name || ''} onChange={handleChange} required placeholder="napr. Členská známka 2026..." />
+                </div>
+                
+                <div className={styles.inputRow}>
+                  <div className={styles.inputGroup}>
+                    <label>Cena (€)</label>
+                    <input 
+                      type="number" 
+                      step="0.01" 
+                      name="price" 
+                      value={formData.price || ''} 
+                      onChange={(e) => setFormData({...formData, price: parseFloat(e.target.value)})} 
+                      required 
+                    />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Kategória</label>
+                    <select name="category" value={formData.category || 'Známky'} onChange={handleChange} className={styles.select}>
+                      <option value="Známky">Známky</option>
+                      <option value="Povolenky">Povolenky</option>
+                      <option value="Iné">Iné</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className={styles.imageSelector}>
+                  <label>Obrázok produktu</label>
+                  <div className={styles.imageConfig}>
+                    {formData.image_url && (
+                      <img src={formData.image_url} alt="Náhľad" className={styles.preview} />
+                    )}
+                    <div className={styles.uploadBox}>
+                      <input 
+                        type="file" 
+                        id="prod_upload" 
+                        accept="image/*" 
+                        onChange={handleImageUpload} 
+                        className={styles.hiddenInput} 
+                      />
+                      <label htmlFor="prod_upload" className={styles.uploadBtn}>
+                        {isUploading ? 'Nahrávam...' : formData.image_url ? 'Zmeniť obrázok' : 'Nahrať obrázok'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <label>Popis produktu</label>
+                  <textarea name="description" value={formData.description || ''} onChange={handleChange} placeholder="Stručný popis položky..." />
+                </div>
+              </>
+            )}
+
             <footer className={styles.footer}>
               <button type="button" className={styles.cancelBtn} onClick={closeEditor}>Zrušiť</button>
               <button type="submit" className={styles.saveBtn} disabled={isSaving}>

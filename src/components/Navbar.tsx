@@ -9,6 +9,7 @@ const navLinks = [
   { label: 'Revíry', href: '/reviry' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Galéria', href: '/galeria' },
+  { label: 'Obchod', href: '/obchod' },
   { label: 'Kontakt', href: '/kontakty' },
 ];
 
@@ -54,7 +55,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="/povolenky" className={styles.ctaButton}>
+          <a href="/obchod" className={styles.ctaButton}>
             Kúpiť Povolenku
           </a>
         </nav>
@@ -93,7 +94,7 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a href="/povolenky" className={styles.ctaButton} onClick={() => setMobileOpen(false)}>
+            <a href="/obchod" className={styles.ctaButton} onClick={() => setMobileOpen(false)}>
               Kúpiť Povolenku
             </a>
           </motion.nav>

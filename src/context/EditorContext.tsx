@@ -2,7 +2,7 @@
 import { createContext, useContext, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
-type EditorType = 'news' | 'date' | 'content' | 'contact' | 'album';
+type EditorType = 'news' | 'date' | 'content' | 'contact' | 'album' | 'product';
 
 interface EditorConfig {
   type: EditorType;
@@ -50,6 +50,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       case 'date': table = 'important_dates'; break;
       case 'content': table = 'site_content'; break;
       case 'album': table = 'gallery_albums'; break;
+      case 'product': table = 'shop_products'; break;
       case 'contact': table = 'site_content'; id = 'kontakty'; break; // Special case for contacts block
     }
 

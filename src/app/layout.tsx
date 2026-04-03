@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     'Oficiálny portál MO SRZ Spišská Belá. Aktuálne oznamy, povolenia na rybolov a informácie o revíroch pod Tatrami.',
 };
 
+import { CartProvider } from '@/context/CartContext';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,12 +23,14 @@ export default function RootLayout({
     <html lang="sk">
       <body>
         <AuthProvider>
-          <EditorProvider>
-            <Navbar />
-            <main style={{ minHeight: '100vh' }}>{children}</main>
-            <Footer />
-            <UniversalEditor />
-          </EditorProvider>
+          <CartProvider>
+            <EditorProvider>
+              <Navbar />
+              <main style={{ minHeight: '100vh' }}>{children}</main>
+              <Footer />
+              <UniversalEditor />
+            </EditorProvider>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

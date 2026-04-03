@@ -104,6 +104,7 @@
   overflow: hidden;
   transition: transform 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .albumCard:hover {

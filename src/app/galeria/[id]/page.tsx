@@ -16,11 +16,22 @@ export default function AlbumDetailsPage() {
   const [photos, setPhotos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     fetchAlbumData();
   }, [id]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+      if (e.key === 'Escape') setSelectedIndex(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex, photos]);
 
   const fetchAlbumData = async () => {
     try {
@@ -49,6 +60,16 @@ export default function AlbumDetailsPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const nextPhoto = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex + 1) % photos.length);
+  };
+
+  const prevPhoto = () => {
+    if (selectedIndex === null) return;
+    setSelectedIndex((selectedIndex - 1 + photos.length) % photos.length);
   };
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,17 +148,16 @@ export default function AlbumDetailsPage() {
             </div>
           )}
 
-          {photos.map((photo) => (
-            <div key={photo.id} className={styles.photoCard}>
+          {photos.map((photo, index) => (
+            <div key={photo.id} className={styles.photoCard} onClick={() => setSelectedIndex(index)}>
               <img 
                 src={photo.url} 
                 alt="Foto" 
-                onClick={() => setSelectedImage(photo.url)}
               />
               {user && (
                 <button 
                   className={styles.deleteBtn} 
-                  onClick={() => deletePhoto(photo.id)}
+                  onClick={(e) => { e.stopPropagation(); deletePhoto(photo.id); }}
                   title="Zmazať fotku"
                 >
                   ✕
@@ -150,21 +170,47 @@ export default function AlbumDetailsPage() {
 
       {/* Lightbox / Overlay */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && (
           <motion.div 
             className={styles.lightbox}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedIndex(null)}
           >
+            {/* Arrows */}
+            {photos.length > 1 && (
+              <>
+                <button 
+                  className={styles.arrowLeft} 
+                  onClick={(e) => { e.stopPropagation(); prevPhoto(); }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button 
+                  className={styles.arrowRight} 
+                  onClick={(e) => { e.stopPropagation(); nextPhoto(); }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+              </>
+            )}
+
             <motion.img 
-              src={selectedImage} 
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              key={photos[selectedIndex].url}
+              src={photos[selectedIndex].url} 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
             />
-            <button className={styles.closeBtn}>Zatvoriť</button>
+
+            <div className={styles.photoCounter}>
+              {selectedIndex + 1} / {photos.length}
+            </div>
+
+            <button className={styles.closeBtn} onClick={() => setSelectedIndex(null)}>Zatvoriť</button>
           </motion.div>
         )}
       </AnimatePresence>

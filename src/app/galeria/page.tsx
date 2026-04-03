@@ -72,7 +72,7 @@ export default function GalleryPage() {
             )}
 
             {albums.map((album, i) => (
-              <div key={album.id || i} className={styles.albumCard}>
+              <Link key={album.id || i} href={`/galeria/${album.id}`} className={styles.albumCard}>
                 <div className={styles.imageWrapper}>
                   <img src={album.cover_image_url || '/images/nature-bg.png'} alt={album.title} className={styles.image} />
                   <div className={styles.badge}>{album.category}</div>
@@ -81,9 +81,9 @@ export default function GalleryPage() {
                   <span className={styles.date}>{new Date(album.created_at).toLocaleDateString('sk-SK')}</span>
                   <h3 className={styles.albumTitle}>{album.title}</h3>
                   <p className={styles.albumDesc}>{album.description}</p>
-                  <Link href={`/galeria/${album.id}`} className={styles.viewBtn}>Otvoriť album</Link>
+                  <span className={styles.viewBtn}>Otvoriť album</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
