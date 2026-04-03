@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/context/AuthContext';
 import styles from './Admin.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import GlobalLoading from '@/components/common/GlobalLoading';
 
 export default function AdminPage() {
   const { user, loading, signOut } = useAuth();
@@ -72,7 +73,7 @@ export default function AdminPage() {
     }
   };
 
-  if (loading) return <div className={styles.loading}>Načítavam...</div>;
+  if (loading) return <GlobalLoading />;
 
   if (!user) {
     return (

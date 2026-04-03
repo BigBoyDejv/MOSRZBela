@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 import NewsFeed from '@/components/NewsFeed';
 import styles from './Aktuality.module.css';
 import { useState, useEffect } from 'react';
+import GlobalLoading from '@/components/common/GlobalLoading';
 
 export default function NewsPage() {
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -30,7 +31,7 @@ export default function NewsPage() {
 
   const tags = ['Všetky', 'urgent', 'important', 'normal', 'Brigády', 'Preteky', 'Oznamy'];
 
-  if (loading) return <div className={styles.loading}>Načítavam...</div>;
+  if (loading) return <GlobalLoading />;
 
   return (
     <div className={styles.page}>

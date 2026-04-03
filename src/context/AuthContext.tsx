@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Session, User } from '@supabase/supabase-js';
+import GlobalLoading from '@/components/common/GlobalLoading';
 
 type AuthContextType = {
   user: User | null;
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{ user, session, loading, signOut }}>
-      {children}
+      {loading ? <GlobalLoading /> : children}
     </AuthContext.Provider>
   );
 };
