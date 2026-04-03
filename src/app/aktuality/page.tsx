@@ -41,6 +41,7 @@ export default function NewsPage() {
           <p className={styles.subtitle}>Oficiálny informačný kanál MO SRZ Spišská Belá</p>
         </div>
       </header>
+      
 
       <div className={styles.container}>
         <div className={styles.blogLayout}>
