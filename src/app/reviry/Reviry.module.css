@@ -6,12 +6,12 @@
 .header {
   position: relative;
   height: 40vh;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url('/images/poprad.png') center/cover no-repeat;
+  background: url('/images/riekapopradč5.jpg') center/cover no-repeat;
   overflow: hidden;
 }
 

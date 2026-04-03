@@ -44,44 +44,42 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(6, 13, 9, 0.4) 0%,
-    rgba(6, 13, 9, 0.2) 40%,
-    rgba(6, 13, 9, 0.6) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(6, 13, 9, 0.4) 0%,
+      rgba(6, 13, 9, 0.2) 40%,
+      rgba(6, 13, 9, 0.6) 100%);
   z-index: 3;
 }
 
 .glassBlobs {
-   position: absolute;
-   inset: 0;
-   z-index: 2;
-   pointer-events: none;
-   overflow: hidden;
- }
- 
- .blob1 {
-   position: absolute;
-   top: 10%;
-   right: 15%;
-   width: 40vw;
-   height: 40vw;
-   background: rgba(202, 138, 4, 0.08);
-   border-radius: 50%;
-   filter: blur(80px);
- }
- 
- .blob2 {
-   position: absolute;
-   bottom: 10%;
-   left: 10%;
-   width: 35vw;
-   height: 35vw;
-   background: rgba(202, 138, 4, 0.05);
-   border-radius: 50%;
-   filter: blur(100px);
- }
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob1 {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 40vw;
+  height: 40vw;
+  background: rgba(202, 138, 4, 0.08);
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.blob2 {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: 35vw;
+  height: 35vw;
+  background: rgba(202, 138, 4, 0.05);
+  border-radius: 50%;
+  filter: blur(100px);
+}
 
 .gradientBottom {
   position: absolute;
@@ -150,7 +148,8 @@
   align-items: center;
   gap: 0.6rem;
   background: var(--accent);
-  color: #0c1a12; /* Dark contrast text on gold */
+  color: #0c1a12;
+  /* Dark contrast text on gold */
   padding: 1.1rem 2.8rem;
   border-radius: var(--radius-full);
   font-weight: 800;
@@ -209,13 +208,16 @@
   .title {
     font-size: 2.5rem;
   }
+
   .subtitle {
     font-size: 1.1rem;
   }
+
   .ctaRow {
     flex-direction: column;
     align-items: center;
   }
+
   .scrollHint {
     bottom: 20px;
   }

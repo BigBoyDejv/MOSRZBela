@@ -120,10 +120,12 @@
 
 .ctaButton {
   background: var(--accent);
-  color: #0c1a12; /* Darker text on gold for contrast */
+  color: #0c1a12;
+  /* Darker text on gold for contrast */
   padding: 0.75rem 1.8rem;
   border-radius: var(--radius-full);
-  font-weight: 800; /* Bolder button */
+  font-weight: 800;
+  /* Bolder button */
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -174,8 +176,13 @@
   transition: transform 0.3s ease;
 }
 
-.hamburger::before { top: -7px; }
-.hamburger::after { bottom: -7px; }
+.hamburger::before {
+  top: -7px;
+}
+
+.hamburger::after {
+  bottom: -7px;
+}
 
 .hamburger.open {
   background: transparent;
@@ -229,10 +236,19 @@
 }
 
 @media (max-width: 900px) {
-  .desktopNav { display: none; }
-  .searchContainer { display: none; }
-  .mobileToggle { display: flex; }
-  .mobileNav { 
+  .desktopNav {
+    display: none;
+  }
+
+  .searchContainer {
+    display: none;
+  }
+
+  .mobileToggle {
+    display: flex;
+  }
+
+  .mobileNav {
     display: flex;
     overflow-y: auto;
     max-height: calc(100vh - 100px);

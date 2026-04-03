@@ -7,6 +7,11 @@ export interface Announcement {
   is_pinned: boolean;
   image_url?: string;
   created_at: string;
+  author_name?: string;
+  tags?: string[];
+  importance?: string;
+  likes?: number;
+  dislikes?: number;
 }
 
 export interface PermitOrder {

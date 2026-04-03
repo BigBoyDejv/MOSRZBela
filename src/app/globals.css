@@ -8,68 +8,81 @@
 /* ── Design Tokens (UI-UX-PRO-MAX Master) ─────────────────────── */
 :root {
   /* Color Palette — Premium Stone & Gold */
-  --bg-deep:       #1C1917; /* Deep Stone */
-  --bg-surface:    #292524; /* Surface Stone */
-  --bg-card:       rgba(28, 25, 23, 0.7);
+  --bg-deep: #1C1917;
+  /* Deep Stone */
+  --bg-surface: #292524;
+  /* Surface Stone */
+  --bg-card: rgba(28, 25, 23, 0.7);
 
-  --primary:       #CA8A04; /* Skill Gold */
+  --primary: #CA8A04;
+  /* Skill Gold */
   --primary-light: #EAB308;
-  --primary-dark:  #854D0E;
-  --accent:        #CA8A04;
-  --accent-gold:   #CA8A04;
+  --primary-dark: #854D0E;
+  --accent: #CA8A04;
+  --accent-gold: #CA8A04;
 
-  --text-white:    #FAFAF9;
-  --text-muted:    #A8A29E;
-  --text-dim:      #78716C;
+  --text-white: #FAFAF9;
+  --text-muted: #A8A29E;
+  --text-dim: #78716C;
 
-  --border-glass:  rgba(255, 255, 255, 0.1);
-  --border-glow:   rgba(202, 138, 4, 0.4);
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(202, 138, 4, 0.4);
 
   /* Precise Shadow Tokens */
-  --shadow-sm:     0 1px 2px rgba(0,0,0,0.3);
-  --shadow-md:     0 4px 6px rgba(0,0,0,0.4);
-  --shadow-lg:     0 10px 15px rgba(0,0,0,0.5);
-  --shadow-xl:     0 20px 25px rgba(0,0,0,0.6);
-  --shadow-heavy:  0 25px 60px rgba(0, 0, 0, 0.7);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --shadow-heavy: 0 25px 60px rgba(0, 0, 0, 0.7);
 
   /* Typography — Senior-Friendly Sizes */
-  --font-heading:  'Inter', -apple-system, sans-serif;
-  --font-body:     'Inter', -apple-system, sans-serif;
+  --font-heading: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
 
-  --text-xs:   0.875rem;    /* 14px */
-  --text-sm:   1rem;        /* 16px */
-  --text-base: 1.2rem;      /* 19px — larger base for seniors */
-  --text-lg:   1.4rem;      /* 22px */
-  --text-xl:   1.75rem;     /* 28px */
-  --text-2xl:  2.25rem;     /* 36px */
-  --text-3xl:  3rem;        /* 48px */
-  --text-4xl:  4rem;        /* 64px */
+  --text-xs: 0.875rem;
+  /* 14px */
+  --text-sm: 1rem;
+  /* 16px */
+  --text-base: 1.2rem;
+  /* 19px — larger base for seniors */
+  --text-lg: 1.4rem;
+  /* 22px */
+  --text-xl: 1.75rem;
+  /* 28px */
+  --text-2xl: 2.25rem;
+  /* 36px */
+  --text-3xl: 3rem;
+  /* 48px */
+  --text-4xl: 4rem;
+  /* 64px */
   --text-hero: clamp(3rem, 6vw, 5.5rem);
 
   /* Spacing */
-  --space-xs:  0.5rem;
-  --space-sm:  1rem;
-  --space-md:  1.5rem;
-  --space-lg:  2.5rem;
-  --space-xl:  4rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
   --space-2xl: 6rem;
 
   /* Radius */
-  --radius-sm:   8px;
-  --radius-md:   16px;
-  --radius-lg:   24px;
-  --radius-xl:   32px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
   --radius-full: 9999px;
 
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.2s var(--ease-out-expo);
-  --transition-med:  0.4s var(--ease-out-expo);
+  --transition-med: 0.4s var(--ease-out-expo);
   --transition-slow: 0.7s var(--ease-out-expo);
 }
 
 /* ── Reset & Base ────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -91,7 +104,10 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
   color: var(--text-white);
   line-height: 1.15;
@@ -121,13 +137,16 @@ img {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-deep);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
@@ -141,8 +160,8 @@ img {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-med),
-              box-shadow var(--transition-med),
-              border-color var(--transition-med);
+    box-shadow var(--transition-med),
+    border-color var(--transition-med);
 }
 
 .glass-card:hover {
@@ -185,8 +204,8 @@ img {
   text-transform: uppercase;
   box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
   transition: transform var(--transition-fast),
-              box-shadow var(--transition-fast),
-              background var(--transition-fast);
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
 }
 
 .btn-primary:hover {
@@ -209,8 +228,8 @@ img {
   text-transform: uppercase;
   border: 2px solid rgba(255, 255, 255, 0.3);
   transition: transform var(--transition-fast),
-              border-color var(--transition-fast),
-              background var(--transition-fast);
+    border-color var(--transition-fast),
+    background var(--transition-fast);
 }
 
 .btn-secondary:hover {
@@ -239,28 +258,61 @@ img {
 
 /* ── Animations ──────────────────────────────────────────────── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 200%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.4); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+  }
 }
 
 @keyframes water-ripple {
-  0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
-  100% { transform: translateX(-50%) scale(2); opacity: 0; }
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(2);
+    opacity: 0;
+  }
 }
 
 /* ── Selection Color ─────────────────────────────────────────── */

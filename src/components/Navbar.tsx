@@ -30,10 +30,10 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
-            <img 
-              src="/images/logo.jpg" 
-              alt="MO SRZ Spišská Belá" 
-              className={styles.officialLogo} 
+            <img
+              src="/images/logo.jpg"
+              alt="MO SRZ Spišská Belá"
+              className={styles.officialLogo}
             />
           </div>
           <div className={styles.logoText}>

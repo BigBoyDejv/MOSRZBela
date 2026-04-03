@@ -104,9 +104,23 @@
   letter-spacing: 1.2px;
 }
 
-.urgent { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.2); }
-.important { background: rgba(251, 191, 36, 0.15); color: var(--accent-gold); border: 1px solid rgba(251, 191, 36, 0.2); }
-.normal { background: rgba(16, 185, 129, 0.15); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.2); }
+.urgent {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.important {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--accent-gold);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.normal {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
 
 .tag {
   color: var(--accent);
@@ -117,25 +131,68 @@
 
 /* Interaction Footer */
 .footer {
+  padding: 1.5rem 0 0;
   display: flex;
-  gap: 2rem;
-  padding-top: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
 }
 
-.actionBtn {
-  background: transparent;
-  border: none;
+.group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.voteBtn {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+}
+
+.iconFish,
+.iconHook {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.reactionLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+.likeBtn:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+.likeBtn:hover .iconFish {
+  transform: scale(1.4) rotate(-15deg);
+}
+
+.dislikeBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.dislikeBtn:hover .iconHook {
+  transform: scale(1.4) rotate(15deg);
 }
 
 .actionBtn:hover {
@@ -143,33 +200,143 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-.actionBtn svg {
-  opacity: 0.6;
+.thumbIcon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+  display: block;
 }
 
-.actionBtn:hover svg {
-  opacity: 1;
-  color: var(--accent);
-}
-
-/* Administrative Actions */
-.adminActions {
-  display: flex;
-  gap: 0.8rem;
-}
-
-.adminActions button {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-dim);
-  padding: 0.6rem;
+.showMoreBtn {
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  color: var(--accent-gold);
+  padding: 0.8rem;
   border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.showMoreBtn:hover {
+  background: rgba(251, 191, 36, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Comments Section */
+.commentSection {
+  margin: 1.5rem -3rem -3rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.commentList {
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.comment {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding-bottom: 1rem;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cAuthor {
+  font-weight: 800;
+  color: var(--text-white);
+  font-size: 0.95rem;
+}
+
+.cTime {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.cDelete {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-weight: 800;
+  cursor: pointer;
+  opacity: 0.5;
+  font-size: 1.2rem;
+}
+
+.cDelete:hover {
+  opacity: 1;
+}
+
+.cText {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Comment Form */
+.commentForm {
+  padding: 2rem 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.cInput,
+.cTextarea {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.cTextarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.cSubmit {
+  background: var(--accent-gold);
+  color: var(--bg-deep);
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.adminEdit:hover { color: var(--accent-gold); border-color: var(--accent-gold); background: rgba(251, 191, 36, 0.1); }
-.adminDelete:hover { color: #fca5a5; border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+.cSubmit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.cSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /* Decorative glow line at bottom */
 .glowLine {
@@ -188,7 +355,45 @@
 }
 
 @media (max-width: 768px) {
-  .card { padding: 1.5rem; gap: 1.5rem; }
-  .title { font-size: 1.6rem; }
-  .footer { gap: 1rem; flex-direction: column; }
+  .card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+.activeLike {
+  color: var(--accent-gold) !important;
+  background: rgba(251, 191, 36, 0.1) !important;
+  border-color: var(--accent-gold) !important;
+  transform: scale(1.05) translateY(-2px);
+}
+
+.activeLike svg {
+  fill: var(--accent-gold) !important;
+  opacity: 1 !important;
+}
+
+.activeDislike {
+  color: #ff4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: #ef4444 !important;
+  transform: scale(1.05) translateY(-2px);
+}
+
+.activeDislike svg {
+  fill: #ff4444 !important;
+  opacity: 1 !important;
+}
+
+.voteBtn:hover {
+  transform: translateY(-2px);
 }
