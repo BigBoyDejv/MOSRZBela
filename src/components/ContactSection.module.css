@@ -1,0 +1,125 @@
+/* ═══ Contact Section ═══ */
+.section {
+  position: relative;
+  padding: 140px 0;
+  background: var(--bg-surface);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--text-white);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Info Cards */
+.infoCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.infoCard {
+  background: rgba(15, 35, 22, 0.5);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: transform 0.3s var(--ease-out-expo),
+              border-color 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateX(6px);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.infoIcon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.infoTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-white);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.infoText {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* Map Card */
+.mapCard {
+  background: rgba(15, 35, 22, 0.5);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.mapInner {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 400px;
+}
+
+.mapCaption {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  padding: 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 80px 0;
+  }
+}

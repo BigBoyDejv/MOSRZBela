@@ -1,0 +1,115 @@
+/* ═══ NewsFeed Section — Dark Cinematic ═══ */
+.section {
+  position: relative;
+  padding: 140px 0 120px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background: url('/images/nature-bg.png') center/cover no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--bg-deep) 0%,
+    rgba(6, 13, 9, 0.75) 20%,
+    rgba(6, 13, 9, 0.6) 50%,
+    rgba(6, 13, 9, 0.75) 80%,
+    var(--bg-deep) 100%
+  );
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--text-white);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2rem;
+}
+
+/* Empty State */
+.emptyState {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  padding: 4rem;
+  border-radius: var(--radius-xl);
+  text-align: center;
+  color: var(--text-white);
+  font-size: var(--text-lg);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.emptyHint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 100px 0 80px;
+  }
+}

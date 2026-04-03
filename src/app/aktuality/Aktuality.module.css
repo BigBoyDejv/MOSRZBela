@@ -1,0 +1,148 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-deep);
+  padding-bottom: 5rem;
+}
+
+.header {
+  position: relative;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/belarybnik.jpg') center/cover no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 13, 9, 0.4) 0%, var(--bg-deep) 100%);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--text-white);
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: -4rem auto 0;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.mainNews {
+  min-width: 0;
+}
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.termCard, .infoCard {
+  background: rgba(15, 35, 22, 0.6);
+  backdrop-filter: blur(25px);
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-glass);
+}
+
+.sidebarTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--text-white);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.sidebarTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.termItem {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.termItem:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.termDate {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+
+.termText {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.infoText {
+  color: var(--text-white);
+  opacity: 0.9;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 30vh;
+  }
+}

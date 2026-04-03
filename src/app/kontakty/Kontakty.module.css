@@ -1,0 +1,149 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-deep);
+  padding-bottom: 5rem;
+}
+
+.header {
+  position: relative;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/nature-lake.png') center/cover no-repeat;
+  text-align: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 13, 9, 0.4) 0%, var(--bg-deep) 100%);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--text-white);
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.card {
+  background: rgba(15, 35, 22, 0.4);
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-glass);
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--text-white);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--primary-light);
+  border-radius: 2px;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.email {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contactItem:last-child {
+  border-bottom: none;
+}
+
+.role {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.phone {
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.phone:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

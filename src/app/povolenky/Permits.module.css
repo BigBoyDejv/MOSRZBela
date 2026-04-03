@@ -1,0 +1,253 @@
+/* ═══ Permit Page — Dark Theme ═══ */
+.pageWrapper {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background: url('/images/belarybnik.jpg') center/cover no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 13, 9, 0.94) 0%,
+    rgba(6, 13, 9, 0.88) 50%,
+    rgba(6, 13, 9, 0.94) 100%
+  );
+  z-index: 1;
+}
+
+.contentLayout {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Info Column */
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.glowCard {
+  background: rgba(15, 35, 22, 0.6);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--border-glow);
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
+}
+
+.titleGlow {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--text-white);
+  margin-bottom: 2rem;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.priceList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.priceItem {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.priceItem strong {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.infoNote {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.infoNote strong {
+  color: var(--primary-light);
+}
+
+.idCard {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+}
+
+.idCard h3 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.idCard p {
+  color: var(--text-white);
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Form Container */
+.formContainer {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-heavy);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  margin-bottom: 1.5rem;
+}
+
+.formTitle {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--text-white);
+  margin-bottom: 0.8rem;
+}
+
+.formSubtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.inputGroup label {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--text-white);
+}
+
+.inputGroup input,
+.inputGroup select {
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-white);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.inputGroup input::placeholder {
+  color: var(--text-dim);
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.inputGroup select option {
+  background: #0c1a12;
+  color: var(--text-white);
+}
+
+.submitBtn {
+  background: var(--accent);
+  color: #0c1a12;
+  padding: 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.35);
+  transition: transform 0.25s var(--ease-out-expo),
+              box-shadow 0.25s ease,
+              background 0.3s ease;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(251, 191, 36, 0.5);
+  background: #f59e0b;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(12, 26, 18, 0.3);
+  border-top-color: #0c1a12;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1100px) {
+  .contentLayout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .formContainer, .glowCard {
+    padding: 2rem;
+  }
+}
