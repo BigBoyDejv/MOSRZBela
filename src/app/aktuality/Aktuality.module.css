@@ -47,17 +47,23 @@
 
 .container {
   max-width: 1400px;
-  margin: -4rem auto 0;
+  margin: -6rem auto 0;
   padding: 0 2rem;
   position: relative;
   z-index: 10;
 }
 
 .blogLayout {
-  display: grid;
-  grid-template-columns: 1fr 350px;
+  display: flex;
+  flex-direction: column;
   gap: 4rem;
-  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .blogLayout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+  }
 }
 
 .mainFeed {

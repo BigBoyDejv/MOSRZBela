@@ -3,10 +3,12 @@ import { useEditor } from '@/context/EditorContext';
 import styles from './UniversalEditor.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { uploadToCloudinary } from '@/lib/cloudinary';
 
 export default function UniversalEditor() {
   const { activeEditor, closeEditor, saveData, isSaving } = useEditor();
   const [formData, setFormData] = useState<any>({});
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (activeEditor) {
@@ -16,14 +18,33 @@ export default function UniversalEditor() {
 
   if (!activeEditor) return null;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const field = activeEditor?.type === 'album' ? 'cover_image_url' : 'image_url';
+
+    try {
+      setIsUploading(true);
+      const url = await uploadToCloudinary(file);
+      setFormData((prev: any) => ({ ...prev, [field]: url }));
+      setIsUploading(false);
+    } catch (err) {
+      alert('Chyba pri nahrávaní obrázka: ' + err);
+      setIsUploading(false);
+    }
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    await saveData(formData);
+    // Exclude tag_input from the payload as it's not a valid column in Supabase
+    const { tag_input, ...dataToSave } = formData;
+    await saveData(dataToSave);
   };
 
   return (
@@ -37,7 +58,7 @@ export default function UniversalEditor() {
           onClick={(e) => e.stopPropagation()}
         >
           <header className={styles.header}>
-            <h2>Upraviť {activeEditor.type === 'news' ? 'aktualitu' : activeEditor.type === 'date' ? 'termín' : 'obsah'}</h2>
+            <h2>Upraviť {activeEditor.type === 'news' ? 'aktualitu' : activeEditor.type === 'date' ? 'termín' : activeEditor.type === 'album' ? 'album' : 'obsah'}</h2>
             <button className={styles.closeBtn} onClick={closeEditor}>✕</button>
           </header>
 
@@ -48,6 +69,28 @@ export default function UniversalEditor() {
                   <label>Titulok</label>
                   <input name="title" value={formData.title || ''} onChange={handleChange} required />
                 </div>
+                
+                <div className={styles.imageSelector}>
+                  <label>Obrázok aktuality</label>
+                  <div className={styles.imageConfig}>
+                    {formData.image_url && (
+                      <img src={formData.image_url} alt="Náhľad" className={styles.preview} />
+                    )}
+                    <div className={styles.uploadBox}>
+                      <input 
+                        type="file" 
+                        id="image_upload" 
+                        accept="image/*" 
+                        onChange={handleImageUpload} 
+                        className={styles.hiddenInput} 
+                      />
+                      <label htmlFor="image_upload" className={styles.uploadBtn}>
+                        {isUploading ? 'Nahrávam...' : formData.image_url ? 'Zmeniť obrázok' : 'Nahrať obrázok'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 <div className={styles.inputGroup}>
                   <label>Krátky popis (excerpt)</label>
                   <textarea name="excerpt" value={formData.excerpt || ''} onChange={handleChange} required />
@@ -70,9 +113,52 @@ export default function UniversalEditor() {
                     </select>
                   </div>
                 </div>
+              </>
+            )}
+
+            {activeEditor.type === 'album' && (
+              <>
                 <div className={styles.inputGroup}>
-                  <label>Štítky (oddelené čiarkou)</label>
-                  <input name="tag_input" value={formData.tag_input || (formData.tags ? formData.tags.join(', ') : '')} onChange={(e) => setFormData({...formData, tag_input: e.target.value, tags: e.target.value.split(',').map((t: string) => t.trim())})} placeholder="napr. Brigáda, Preteky" />
+                  <label>Názov albumu</label>
+                  <input name="title" value={formData.title || ''} onChange={handleChange} required placeholder="napr. Brigáda na rybníku 2026" />
+                </div>
+                
+                <div className={styles.imageSelector}>
+                  <label>Titulná fotka (obálka)</label>
+                  <div className={styles.imageConfig}>
+                    {(formData.cover_image_url) && (
+                      <img src={formData.cover_image_url} alt="Náhľad" className={styles.preview} />
+                    )}
+                    <div className={styles.uploadBox}>
+                      <input 
+                        type="file" 
+                        id="cover_upload" 
+                        accept="image/*" 
+                        onChange={handleImageUpload} 
+                        className={styles.hiddenInput} 
+                      />
+                      <label htmlFor="cover_upload" className={styles.uploadBtn}>
+                        {isUploading ? 'Nahrávam...' : formData.cover_image_url ? 'Zmeniť obálku' : 'Nahrať obálku'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.inputRow}>
+                  <div className={styles.inputGroup}>
+                    <label>Kategória</label>
+                    <select name="category" value={formData.category || 'Organizácia'} onChange={handleChange} className={styles.select}>
+                      <option value="Organizácia">Organizácia</option>
+                      <option value="Súťaž">Súťaž</option>
+                      <option value="Príroda">Príroda</option>
+                      <option value="Brigáda">Brigáda</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <label>Stručný popis</label>
+                  <textarea name="description" value={formData.description || ''} onChange={handleChange} placeholder="Pár slov o albume..." />
                 </div>
               </>
             )}

@@ -12,6 +12,8 @@ const navLinks = [
   { label: 'Kontakt', href: '/kontakty' },
 ];
 
+import GlobalSearch from './GlobalSearch';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,6 +41,11 @@ export default function Navbar() {
             <span className={styles.logoSub}>Spišská Belá</span>
           </div>
         </a>
+
+        {/* Global Search */}
+        <div className={styles.searchContainer}>
+          <GlobalSearch />
+        </div>
 
         {/* Desktop Nav */}
         <nav className={styles.desktopNav}>
@@ -72,6 +79,10 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Mobile Search */}
+            <div className={styles.mobileSearch}>
+              <GlobalSearch />
+            </div>
             {navLinks.map((link) => (
               <a
                 key={link.href}

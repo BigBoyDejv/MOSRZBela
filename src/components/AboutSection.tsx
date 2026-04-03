@@ -1,4 +1,8 @@
 'use client';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/context/AuthContext';
+import { useEditor } from '@/context/EditorContext';
 import { motion } from 'framer-motion';
 import styles from './AboutSection.module.css';
 
@@ -10,6 +14,27 @@ const stats = [
 ];
 
 export default function AboutSection() {
+  const { user } = useAuth();
+  const { openEditor } = useEditor();
+  const [text, setText] = useState('Miestna organizácia Slovenského rybárskeho zväzu Spišská Belá má bohatú tradíciu siahajúcu hlboko do minulosti...');
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
+  const fetchContent = async () => {
+    const { data } = await supabase.from('site_content').select('text').eq('id', 'home-about-text').single();
+    if (data) setText(data.text);
+  };
+
+  const handleEdit = () => {
+    openEditor({
+      type: 'content',
+      id: 'home-about-text',
+      initialData: { text }
+    });
+  };
+
   return (
     <section id="o-nas" className={styles.section}>
       <div className={styles.container}>
@@ -22,18 +47,22 @@ export default function AboutSection() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
           >
-            <span className={styles.badge}>O nás</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+              <span className={styles.badge}>O nás</span>
+              {user && (
+                <button 
+                  onClick={handleEdit}
+                  style={{ background: 'none', border: 'none', color: 'var(--accent-gold)', cursor: 'pointer', opacity: 0.7 }}
+                  title="Upraviť text"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+                </button>
+              )}
+            </div>
             <h2 className={styles.title}>Naša História & Poslanie</h2>
-            <p className={styles.desc}>
-              Miestna organizácia Slovenského rybárskeho zväzu Spišská Belá má bohatú tradíciu
-              siahajúcu hlboko do minulosti. Naše revíry, na čele s Belianskym rybníkom, sú
-              domovom pre mnohé druhy rýb a miestom pokoja pre každého rybára.
-            </p>
-            <p className={styles.desc}>
-              Staráme sa o prírodné bohatstvo pod Belianskymi Tatrami, organizujeme zarybňovania,
-              brigády a súťaže. Naším cieľom je udržateľný rybolov a zachovanie krásy tohto
-              jedinečného prostredia pre budúce generácie.
-            </p>
+            <div className={styles.desc} style={{ whiteSpace: 'pre-wrap' }}>
+              {text}
+            </div>
 
             <a href="#kontakt" className={styles.link}>
               Kontaktujte nás

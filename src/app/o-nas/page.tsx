@@ -1,4 +1,6 @@
 'use client';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import styles from './About.module.css';
 import { useAuth } from '@/context/AuthContext';
 import { useEditor } from '@/context/EditorContext';
@@ -6,20 +8,35 @@ import { useEditor } from '@/context/EditorContext';
 export default function AboutPage() {
   const { user } = useAuth();
   const { openEditor } = useEditor();
+  const [content, setContent] = useState({
+    title: 'O nás',
+    subtitle: 'Bohatá história a rybárska tradícia v srdci Spiša',
+    info: 'Miestna organizácia Slovenského rybárskeho zväzu v Spišskej Belej je dôležitým pilierom...',
+    historyTitle: 'História'
+  });
 
-  const handleEditInfo = () => {
-    openEditor({
-      type: 'content',
-      id: 'o-nas-info',
-      initialData: { text: 'Miestna organizácia Slovenského rybárskeho zväzu v Spišskej Belej je dôležitým pilierom...' }
-    });
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
+  const fetchContent = async () => {
+    const { data } = await supabase.from('site_content').select('*').in('id', ['o-nas-info', 'o-nas-subtitle']);
+    if (data) {
+      const info = data.find(c => c.id === 'o-nas-info')?.text;
+      const sub = data.find(c => c.id === 'o-nas-subtitle')?.text;
+      setContent(prev => ({
+        ...prev,
+        info: info || prev.info,
+        subtitle: sub || prev.subtitle
+      }));
+    }
   };
 
-  const handleEditHistory = () => {
+  const handleEdit = (id: string, currentText: string) => {
     openEditor({
       type: 'content',
-      id: 'o-nas-history',
-      initialData: { text: 'Založenie organizácie starostom mesta Georgom Koromzaym...' }
+      id: id,
+      initialData: { text: currentText }
     });
   };
 
@@ -27,10 +44,26 @@ export default function AboutPage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.overlay} />
-        <div className={styles.content}>
-          <h1 className={styles.title}>O nás</h1>
-          <p className={styles.subtitle}>Bohatá história a rybárska tradícia v srdci Spiša</p>
-        </div>
+        <motion.div 
+          className={styles.content}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className={styles.sectionHeader} style={{ justifyContent: 'center', gap: '1rem', border: 'none' }}>
+            <h1 className={styles.title}>{content.title}</h1>
+            {user && (
+              <button className={styles.adminEditBtn} onClick={() => handleEdit('o-nas-title', content.title)} style={{ position: 'absolute', right: -40, top: 10 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+              </button>
+            )}
+          </div>
+          <p className={styles.subtitle}>{content.subtitle}</p>
+          {user && (
+            <button className={styles.adminEditBtn} onClick={() => handleEdit('o-nas-subtitle', content.subtitle)} style={{ margin: '0.5rem auto' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+            </button>
+          )}
+        </motion.div>
       </header>
 
       <section className={styles.container}>
@@ -40,33 +73,20 @@ export default function AboutPage() {
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Naša Organizácia</h2>
               {user && (
-                <button className={styles.adminEditBtn} onClick={handleEditInfo} title="Upraviť informácie">
+                <button className={styles.adminEditBtn} onClick={() => handleEdit('o-nas-info', content.info)} title="Upraviť informácie">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
                 </button>
               )}
             </div>
-            <p className={styles.text}>
-              Miestna organizácia Slovenského rybárskeho zväzu v Spišskej Belej je dôležitým pilierom 
-              miestnej komunity rybárov a milovníkov prírody. Spravujeme viacero revírov 
-              pod Belianskymi Tatrami, s hlavným zameraním na pstruhové a lipňové vody, 
-              ako aj obľúbený Beliansky rybník.
-            </p>
-            <p className={styles.text}>
-              Naším cieľom nie je len rybolov, ale predovšetkým ochrana prírody, 
-              zarybňovanie a zveľaďovanie revírov, aby aj budúce generácie mohli 
-              zažívať radosť z tohto ušľachtilého koníčka v krásnom prostredí našich hôr.
-            </p>
+            <div className={styles.text} style={{ whiteSpace: 'pre-wrap' }}>
+              {content.info}
+            </div>
           </div>
 
           {/* History */}
           <div className={styles.historyCard}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>História</h2>
-              {user && (
-                <button className={styles.adminEditBtn} onClick={handleEditHistory} title="Upraviť históriu">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
-                </button>
-              )}
             </div>
             <div className={styles.timeline}>
               <div className={styles.item}>
@@ -96,3 +116,5 @@ export default function AboutPage() {
     </div>
   );
 }
+
+import { motion } from 'framer-motion';

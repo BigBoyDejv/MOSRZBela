@@ -2,7 +2,7 @@
 import { createContext, useContext, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
-type EditorType = 'news' | 'date' | 'content' | 'contact';
+type EditorType = 'news' | 'date' | 'content' | 'contact' | 'album';
 
 interface EditorConfig {
   type: EditorType;
@@ -49,15 +49,32 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       case 'news': table = 'announcements'; break;
       case 'date': table = 'important_dates'; break;
       case 'content': table = 'site_content'; break;
+      case 'album': table = 'gallery_albums'; break;
       case 'contact': table = 'site_content'; id = 'kontakty'; break; // Special case for contacts block
     }
 
+    // Define allowed keys for each table to help avoid "column not found" errors
+    const cleanedData = { ...data };
+    
+    // Remove internal/temporary fields
+    delete (cleanedData as any).tag_input;
+    if (!(cleanedData as any).id?.includes('-')) { // If id is just a slug string (like in site_content)
+        // Keep it for .eq() but maybe skip for insert? 
+    }
+    
+    // For albums and news, we want Supabase to handle the UUID/ID on insert.
+    // However, if we derived initial state from existing item, 'id' is there.
+    if (activeEditor?.type !== 'content' && activeEditor?.type !== 'contact') {
+        delete (cleanedData as any).id; 
+    }
+    delete (cleanedData as any).created_at; 
+
     try {
       if (id) {
-        const { error } = await supabase.from(table).update(data).eq('id', id);
+        const { error } = await supabase.from(table).update(cleanedData).eq('id', id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from(table).insert([data]);
+        const { error } = await supabase.from(table).insert([cleanedData]);
         if (error) throw error;
       }
       closeEditor();
