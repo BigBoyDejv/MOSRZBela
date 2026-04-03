@@ -78,8 +78,28 @@ export default function AboutPage() {
                 </button>
               )}
             </div>
-            <div className={styles.text} style={{ whiteSpace: 'pre-wrap' }}>
-              {content.info}
+            <div className={styles.text}>
+              <p>Miestna organizácia Slovenského rybárskeho zväzu v Spišskej Belej je neziskovým občianskym združením, ktorého poslaním je hospodárenie v rybárskych revíroch, ochrana životného prostredia a rozvoj rybárskeho športu pod Belianskymi Tatrami.</p>
+              
+              <h3 className={styles.subTitle}>Vedenie organizácie</h3>
+              <ul className={styles.boardList}>
+                <li><strong>Predseda:</strong> Patrik Kaňuk</li>
+                <li><strong>Podpredseda:</strong> Vladimír Fudaly</li>
+                <li><strong>Tajomník:</strong> Ing. Jakub Lenkavský</li>
+                <li><strong>Hospodár:</strong> Rudolf Frindt</li>
+              </ul>
+
+              <h3 className={styles.subTitle}>Členovia výboru</h3>
+              <ul className={styles.boardList}>
+                <li>Jaroslav Orenčák, Stanislav Bekeš, Miloš Jacenko</li>
+              </ul>
+
+              <h3 className={styles.subTitle}>Kontrolná komisia</h3>
+              <ul className={styles.boardList}>
+                <li>Ladislav Smrek, Jozef Lorenčík, Jozef Šterbák</li>
+              </ul>
+
+              <p className={styles.slogan}>Petrov zdar!</p>
             </div>
           </div>
 
@@ -91,19 +111,31 @@ export default function AboutPage() {
             <div className={styles.timeline}>
               <div className={styles.item}>
                 <span className={styles.year}>1889</span>
-                <p className={styles.event}>Založenie Rybárskeho spolku starostom Georgom Koromzaym a lekárom MUDr. Michalom Greisigerom.</p>
+                <p className={styles.event}><strong>Založenie:</strong> Rybársky spolok v Spišskej Belej vznikol už v roku 1889. Prvým predsedom bol Georg Koromzay a pokladníkom mestský lekár MUDr. Michal Greisiger.</p>
               </div>
               <div className={styles.item}>
                 <span className={styles.year}>1890</span>
-                <p className={styles.event}>Prvé veľké zarybnenie: 10 000 kusov plôdikov lososa a pstruha do potoka pod Šarpancom.</p>
+                <p className={styles.event}><strong>Prvé zarybnenie:</strong> Do obecného potoka bolo vypustených 5 000 lososov a 5 000 pstruhov.</p>
               </div>
               <div className={styles.item}>
                 <span className={styles.year}>1912</span>
-                <p className={styles.event}>Schválenie prvých zachovaných stanov spolku v Budapešti a Kežmarku.</p>
+                <p className={styles.event}><strong>Stanovy:</strong> Boli spísané prvé zachované stanovy spolku, ktoré určovali spôsoby lovu a ochranu rýb.</p>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.year}>1926</span>
+                <p className={styles.event}><strong>Názov:</strong> Založenie "Zväzu rybárskych spolkov" v Bratislave a oficiálne prijatie názvu "Rybársky spolok Spišská Belá".</p>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.year}>1960</span>
+                <p className={styles.event}><strong>Zlúčenie:</strong> V rámci reorganizácie okresov došlo k 12-ročnému zlúčeniu s rybárskou organizáciou Stará Ľubovňa.</p>
               </div>
               <div className={styles.item}>
                 <span className={styles.year}>1973</span>
-                <p className={styles.event}>Obnovenie samostatnej Miestnej organizácie SRZ Spišská Belá po období reorganizácie.</p>
+                <p className={styles.event}><strong>Samostatnosť:</strong> Obnovenie samostatnej Miestnej organizácie SRZ Spišská Belá pod vedením MVDr. Vladimíra Ďuriša.</p>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.year}>1980</span>
+                <p className={styles.event}><strong>Rozkvet:</strong> Otvorenie lovného rybníka a dosiahnutie historicky najvyššej členskej základne (169 členov).</p>
               </div>
               <div className={styles.item}>
                 <span className={styles.year}>Dnes</span>

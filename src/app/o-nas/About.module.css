@@ -182,3 +182,53 @@
     gap: 3rem;
   }
 }
+
+.subTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--accent-gold);
+  margin: 3rem 0 1.5rem;
+  letter-spacing: 1px;
+}
+
+.boardList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.boardList li {
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.boardList li::before {
+  content: "•";
+  color: var(--accent-gold);
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.slogan {
+  margin-top: 4rem;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--accent-gold);
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.item {
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+  transform: translateX(10px);
+}

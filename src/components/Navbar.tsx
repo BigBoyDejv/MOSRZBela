@@ -9,7 +9,6 @@ const navLinks = [
   { label: 'Revíry', href: '/reviry' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Galéria', href: '/galeria' },
-  { label: 'Obchod', href: '/obchod' },
   { label: 'Kontakt', href: '/kontakty' },
 ];
 

@@ -9,7 +9,10 @@ import Link from 'next/link';
 export default function ShopPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState('Všetko');
   const { cart, addToCart } = useCart();
+
+  const filters = ['Všetko', 'Kaprové', 'Pstruhové', 'Lipňové'];
 
   useEffect(() => {
     fetchProducts();
@@ -31,6 +34,10 @@ export default function ShopPage() {
     }
   };
 
+  const filteredProducts = activeFilter === 'Všetko' 
+    ? products 
+    : products.filter(p => p.name.toLowerCase().includes(activeFilter.toLowerCase().replace('é', 'e')));
+
   return (
     <div className={styles.shopPage}>
       {/* Cinematic Hero */}
@@ -48,13 +55,26 @@ export default function ShopPage() {
       </header>
 
       <section className={styles.container}>
+        {/* Filtering Tabs */}
+        <div className={styles.tabs}>
+          {filters.map((filter) => (
+            <button 
+              key={filter} 
+              className={`${styles.tab} ${activeFilter === filter ? styles.activeTab : ''}`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         {/* Product Grid */}
         <div className={styles.grid}>
           {loading ? (
              <div className={styles.loading}>Načítavam produkty...</div>
           ) : (
             <AnimatePresence mode='popLayout'>
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <motion.div 
                   key={product.id}
                   layout

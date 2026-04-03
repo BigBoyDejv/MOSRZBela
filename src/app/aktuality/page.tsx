@@ -27,9 +27,17 @@ export default function NewsPage() {
 
   const filteredNews = filter === 'Všetky' 
     ? announcements 
-    : announcements.filter(item => item.importance === filter || (item.tags && item.tags.includes(filter)));
+    : announcements.filter(item => {
+        const query = filter.toLowerCase();
+        return (
+          item.importance?.toLowerCase() === query || 
+          (item.tags && item.tags.some((t: string) => t.toLowerCase() === query)) ||
+          item.title?.toLowerCase().includes(query) ||
+          item.content?.toLowerCase().includes(query)
+        );
+      });
 
-  const tags = ['Všetky', 'urgent', 'important', 'normal', 'Brigády', 'Preteky', 'Oznamy'];
+  const tags = ['Všetky', 'Brigády', 'Oznamy', 'Preteky'];
 
   if (loading) {
     return (
