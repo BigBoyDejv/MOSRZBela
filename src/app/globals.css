@@ -5,32 +5,35 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ── Design Tokens ───────────────────────────────────────────── */
+/* ── Design Tokens (UI-UX-PRO-MAX Master) ─────────────────────── */
 :root {
-  /* Color Palette — Dark Forest (UI-UX-PRO-MAX Overrides) */
-  --bg-deep:       #060d09;
-  --bg-surface:    #0c1a12;
-  --bg-card:       rgba(15, 35, 22, 0.65);
+  /* Color Palette — Premium Stone & Gold */
+  --bg-deep:       #1C1917; /* Deep Stone */
+  --bg-surface:    #292524; /* Surface Stone */
+  --bg-card:       rgba(28, 25, 23, 0.7);
 
-  --primary:       #059669; /* Skill recommended emerald */
-  --primary-light: #10b981;
-  --primary-dark:  #064e3b;
-  --accent:        #fbbf24; /* Skill recommended gold */
-  --accent-gold:   #fbbf24;
+  --primary:       #CA8A04; /* Skill Gold */
+  --primary-light: #EAB308;
+  --primary-dark:  #854D0E;
+  --accent:        #CA8A04;
+  --accent-gold:   #CA8A04;
 
-  --text-white:    #f0f7f2;
-  --text-muted:    rgba(240, 247, 242, 0.65);
-  --text-dim:      rgba(240, 247, 242, 0.4);
+  --text-white:    #FAFAF9;
+  --text-muted:    #A8A29E;
+  --text-dim:      #78716C;
 
-  --border-glass:  rgba(255, 255, 255, 0.08);
-  --border-glow:   rgba(5, 150, 105, 0.3);
+  --border-glass:  rgba(255, 255, 255, 0.1);
+  --border-glow:   rgba(202, 138, 4, 0.4);
 
-  --shadow-heavy:  0 25px 60px rgba(0, 0, 0, 0.6);
-  --shadow-card:   0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow:   0 0 40px rgba(5, 150, 105, 0.15);
+  /* Precise Shadow Tokens */
+  --shadow-sm:     0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:     0 4px 6px rgba(0,0,0,0.4);
+  --shadow-lg:     0 10px 15px rgba(0,0,0,0.5);
+  --shadow-xl:     0 20px 25px rgba(0,0,0,0.6);
+  --shadow-heavy:  0 25px 60px rgba(0, 0, 0, 0.7);
 
   /* Typography — Senior-Friendly Sizes */
-  --font-heading:  'Playfair Display', Georgia, serif;
+  --font-heading:  'Inter', -apple-system, sans-serif;
   --font-body:     'Inter', -apple-system, sans-serif;
 
   --text-xs:   0.875rem;    /* 14px */

@@ -41,6 +41,20 @@ export default function Hero() {
         </svg>
       </motion.div>
 
+      {/* Liquid Glass Blobs */}
+      <div className={styles.glassBlobs}>
+        <motion.div 
+          className={styles.blob1}
+          animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div 
+          className={styles.blob2}
+          animate={{ x: [0, -40, 0], y: [0, 60, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
       {/* Dark Overlay */}
       <motion.div className={styles.overlay} style={{ opacity: overlayOpacity }} />
 
@@ -75,7 +89,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          Rybolov v srdci Spiša — miesto, kde ožívajú legendy
+          Kvalitná rybačka priamo pod Tatrami
         </motion.p>
 
         <motion.div
