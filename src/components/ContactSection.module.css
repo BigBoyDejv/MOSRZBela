@@ -18,7 +18,7 @@
 
 .badge {
   display: inline-block;
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(202, 138, 4, 0.1);
   color: var(--accent);
   padding: 0.4rem 1.2rem;
   border-radius: var(--radius-full);
@@ -26,7 +26,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--border-glow);
   margin-bottom: 1.5rem;
 }
 
@@ -70,7 +70,7 @@
 
 .infoCard:hover {
   transform: translateX(6px);
-  border-color: rgba(16, 185, 129, 0.2);
+  border-color: var(--border-glow);
 }
 
 .infoIcon {

@@ -6,6 +6,7 @@ import styles from './Navbar.module.css';
 const navLinks = [
   { label: 'Domov', href: '/' },
   { label: 'Aktuality', href: '/aktuality' },
+  { label: 'Revíry', href: '/reviry' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Galéria', href: '/galeria' },
   { label: 'Kontakt', href: '/kontakty' },

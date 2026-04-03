@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 import NewsFeed from '@/components/NewsFeed';
 import styles from './Aktuality.module.css';
 import { useState, useEffect } from 'react';
-import GlobalLoading from '@/components/common/GlobalLoading';
+import { NewsSkeleton } from '@/components/common/Skeleton';
 
 export default function NewsPage() {
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -31,7 +31,27 @@ export default function NewsPage() {
 
   const tags = ['Všetky', 'urgent', 'important', 'normal', 'Brigády', 'Preteky', 'Oznamy'];
 
-  if (loading) return <GlobalLoading />;
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <header className={styles.header}>
+           <div className={styles.overlay} />
+           <div className={styles.content}>
+             <h1 className={styles.title}>Aktuality & Oznamy</h1>
+           </div>
+        </header>
+        <div className={styles.container}>
+          <div className={styles.blogLayout}>
+            <div className="flex flex-col gap-6 w-full max-w-4xl">
+              <NewsSkeleton />
+              <NewsSkeleton />
+              <NewsSkeleton />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>

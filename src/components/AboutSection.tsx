@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import styles from './AboutSection.module.css';
 
 const stats = [
-  { value: '70+', label: 'Rokov tradície' },
-  { value: '500+', label: 'Aktívnych členov' },
-  { value: '12', label: 'Revírov' },
-  { value: '2000+', label: 'kg ryby/rok' },
+  { value: '135+', label: 'Rokov tradície' },
+  { value: '400+', label: 'Členov' },
+  { value: '8', label: 'Revírov' },
+  { value: '25+', label: 'km tokov' },
 ];
 
 export default function AboutSection() {

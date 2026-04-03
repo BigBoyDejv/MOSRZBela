@@ -18,12 +18,11 @@
   align-items: center;
 }
 
-/* Text Side */
-.textSide { }
+
 
 .badge {
   display: inline-block;
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(202, 138, 4, 0.1);
   color: var(--accent);
   padding: 0.4rem 1.2rem;
   border-radius: var(--radius-full);
@@ -31,7 +30,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--border-glow);
   margin-bottom: 1.5rem;
 }
 
@@ -95,7 +94,7 @@
   font-family: var(--font-heading);
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--accent), #34d399);
+  background: linear-gradient(135deg, var(--accent), #EAB308);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

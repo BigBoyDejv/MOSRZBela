@@ -71,19 +71,23 @@ export default function AboutPage() {
             <div className={styles.timeline}>
               <div className={styles.item}>
                 <span className={styles.year}>1889</span>
-                <p className={styles.event}>Založenie organizácie starostom mesta Georgom Koromzaym.</p>
+                <p className={styles.event}>Založenie Rybárskeho spolku starostom Georgom Koromzaym a lekárom MUDr. Michalom Greisigerom.</p>
               </div>
               <div className={styles.item}>
-                <span className={styles.year}>1952</span>
-                <p className={styles.event}>Moderná etapa po druhej svetovej vojne a stabilizácia revírov.</p>
+                <span className={styles.year}>1890</span>
+                <p className={styles.event}>Prvé veľké zarybnenie: 10 000 kusov plôdikov lososa a pstruha do potoka pod Šarpancom.</p>
               </div>
               <div className={styles.item}>
-                <span className={styles.year}>1968</span>
-                <p className={styles.event}>Rozsiahla rekonštrukcia "Rybárskeho domu" na Belianskom rybníku.</p>
+                <span className={styles.year}>1912</span>
+                <p className={styles.event}>Schválenie prvých zachovaných stanov spolku v Budapešti a Kežmarku.</p>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.year}>1973</span>
+                <p className={styles.event}>Obnovenie samostatnej Miestnej organizácie SRZ Spišská Belá po období reorganizácie.</p>
               </div>
               <div className={styles.item}>
                 <span className={styles.year}>Dnes</span>
-                <p className={styles.event}>Aktívna organizácia so stovkami členov a silnou tradíciou zarybňovania.</p>
+                <p className={styles.event}>Pokračujeme v tradícii ochrany vôd pod Belianskymi Tatrami pre stovky našich členov.</p>
               </div>
             </div>
           </div>
