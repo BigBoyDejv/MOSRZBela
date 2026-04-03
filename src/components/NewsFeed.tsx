@@ -1,3 +1,5 @@
+'use client'
+
 import { useAuth } from '@/context/AuthContext';
 import { useEditor } from '@/context/EditorContext';
 import NewsCard from './NewsCard';
@@ -35,12 +37,12 @@ export default function NewsFeed({ announcements }: NewsFeedProps) {
           <div className={styles.badgeRow}>
             <span className={styles.badge}>Najnovšie aktuality</span>
             {user && (
-              <button 
-                className={styles.adminAddBtn} 
-                onClick={handleAdd} 
+              <button
+                className={styles.adminAddBtn}
+                onClick={handleAdd}
                 title="Pridať novú aktualitu"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5v14" /></svg>
               </button>
             )}
           </div>
