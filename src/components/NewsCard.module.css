@@ -157,6 +157,40 @@
   background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
 }
 
+.adminActions {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: auto;
+  align-self: flex-start;
+}
+
+.adminActions button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  padding: 0.4rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adminEdit:hover {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: var(--accent-gold) !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.adminDelete:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
   .card {
     padding: 1.8rem;

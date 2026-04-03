@@ -41,6 +41,14 @@
   margin-bottom: 4rem;
 }
 
+.badgeRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .badge {
   display: inline-block;
   background: rgba(16, 185, 129, 0.15);
@@ -52,7 +60,26 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   border: 1px solid rgba(16, 185, 129, 0.2);
-  margin-bottom: 1.5rem;
+}
+
+.adminAddBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+  padding: 0.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.adminAddBtn:hover {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border-color: var(--accent);
+  transform: scale(1.15) rotate(90deg);
 }
 
 .title {

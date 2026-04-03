@@ -1,0 +1,289 @@
+.loginWrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-deep);
+  padding: 2rem;
+}
+
+.loginCard {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--border-glass);
+  padding: 3.5rem;
+  border-radius: var(--radius-xl);
+  max-width: 450px;
+  width: 100%;
+  box-shadow: var(--shadow-heavy);
+  text-align: center;
+}
+
+.loginTitle {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--text-white);
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form input {
+  padding: 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-white);
+  font-size: 1.1rem;
+}
+
+.loginBtn {
+  background: var(--accent);
+  color: var(--bg-deep);
+  padding: 1.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  transition: transform 0.2s;
+}
+
+.loginBtn:hover {
+  transform: translateY(-2px);
+  background: #f59e0b;
+}
+
+.error {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+/* Dashboard */
+.dashboard {
+  min-height: 100vh;
+  background: var(--bg-deep);
+  padding-top: 100px;
+}
+
+.dashHeader {
+  max-width: 1400px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashHeader h1 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--text-white);
+}
+
+.dashHeader p {
+  color: var(--text-muted);
+}
+
+.logoutBtn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.dashNav {
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.dashNav button {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.dashNav button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.dashMain {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--text-white);
+}
+
+.addBtn {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.listItem {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-glass);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listItem h3 {
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.listItem p {
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actions button {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.actions button.delete {
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.actions button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.statusBadge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.8rem;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal {
+  background: #111;
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-glass);
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modalTitle {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--text-white);
+  margin-bottom: 2rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modalForm input, .modalForm textarea {
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--text-white);
+  font-size: 1.1rem;
+}
+
+.modalForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.modalActions button {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saveBtn {
+  background: var(--accent);
+  color: var(--bg-deep);
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  cursor: pointer;
+}

@@ -1,6 +1,14 @@
+'use client';
 import styles from './Galeria.module.css';
+import { useAuth } from '@/context/AuthContext';
 
 export default function GalleryPage() {
+  const { user } = useAuth();
+  
+  const handleAdd = () => {
+    window.location.href = '/admin?tab=gallery';
+  };
+
   const albums = [
     { title: 'Preteky na rybníku', count: 24, category: 'Competition', image: '/images/nature-lake.png' },
     { title: '125. výročie MO', count: 48, category: 'Celebration', image: '/images/belarybnik.jpg' },
@@ -13,7 +21,14 @@ export default function GalleryPage() {
       <header className={styles.header}>
         <div className={styles.overlay} />
         <div className={styles.content}>
-          <h1 className={styles.title}>Fotogaléria</h1>
+          <div className={styles.headerRow}>
+            <h1 className={styles.title}>Fotogaléria</h1>
+            {user && (
+              <button className={styles.adminAddBtn} onClick={handleAdd} title="Pridať album">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5v14"/></svg>
+              </button>
+            )}
+          </div>
           <p className={styles.subtitle}>Momenty z našich revírov a podujatí</p>
         </div>
       </header>

@@ -1,6 +1,28 @@
+'use client';
 import styles from './Kontakty.module.css';
+import { useAuth } from '@/context/AuthContext';
+import { useEditor } from '@/context/EditorContext';
 
 export default function ContactsPage() {
+  const { user } = useAuth();
+  const { openEditor } = useEditor();
+  
+  const handleEditSídlo = () => {
+    openEditor({
+      type: 'content',
+      id: 'kontakt-sidlo',
+      initialData: { text: 'Rybársky dom\nBeliansky rybník, Spišská Belá\nmosrzbelas@gmail.com' }
+    });
+  };
+
+  const handleEditVýbor = () => {
+    openEditor({
+      type: 'content',
+      id: 'kontakt-vybor',
+      initialData: { text: 'Predseda: Patrik Kaňuk...' }
+    });
+  };
+
   const contacts = [
     { role: 'Predseda', name: 'Patrik Kaňuk', phone: '0944 163 868' },
     { role: 'Podpredseda', name: 'Vladimír Fudaly', phone: '0907 407 542' },
@@ -29,14 +51,28 @@ export default function ContactsPage() {
           {/* Main Info */}
           <div className={styles.infoCol}>
             <div className={styles.card}>
-              <h2 className={styles.sectionTitle}>Sídlo organizácie</h2>
+              <div className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Sídlo organizácie</h2>
+                {user && (
+                  <button className={styles.adminEditBtn} onClick={handleEditSídlo} title="Upraviť sídlo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+                  </button>
+                )}
+              </div>
               <p className={styles.text}><strong>Rybársky dom</strong></p>
               <p className={styles.text}>Beliansky rybník, Spišská Belá</p>
               <p className={styles.email}>📧 mosrzbelas@gmail.com</p>
             </div>
 
             <div className={styles.card}>
-              <h2 className={styles.sectionTitle}>Výbor a komisia</h2>
+              <div className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Výbor a komisia</h2>
+                {user && (
+                  <button className={styles.adminEditBtn} onClick={handleEditVýbor} title="Upraviť výbor">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+                  </button>
+                )}
+              </div>
               <div className={styles.contactList}>
                 {contacts.map((c, i) => (
                   <div key={i} className={styles.contactItem}>
@@ -49,7 +85,14 @@ export default function ContactsPage() {
             </div>
 
             <div className={styles.card}>
-              <h2 className={styles.sectionTitle}>Ďalší členovia výboru</h2>
+              <div className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Ďalší členovia výboru</h2>
+                {user && (
+                  <button className={styles.adminEditBtn} onClick={handleEditVýbor} title="Upraviť členov">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/></svg>
+                  </button>
+                )}
+              </div>
               <div className={styles.contactList}>
                 {committee.map((c, i) => (
                   <div key={i} className={styles.contactItem}>

@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { AuthProvider } from '@/context/AuthContext';
+import { EditorProvider } from '@/context/EditorContext';
+import UniversalEditor from '@/components/UniversalEditor';
 
 export const metadata: Metadata = {
-  title: "Rybky Spišská Belá | Rybolov v srdci Tatier",
+  title: 'Rybky Spišská Belá | Rybolov v srdci Tatier',
   description:
-    "Portál pre rybárov v Spišskej Belej. Aktuálne oznamy, povolenia na rybolov a informácie o revíroch pod Belianskymi Tatrami.",
-  keywords: "rybolov, Spišská Belá, povolenky, rybársky spolok, Tatry, kapor, pstruh",
+    'Portál pre rybárov v Spišskej Belej. Aktuálne oznamy, povolenia na rybolov a informácie o revíroch pod Tatoami.',
 };
 
 export default function RootLayout({
@@ -18,9 +20,14 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <body>
-        <Navbar />
-        <main style={{ minHeight: "100vh" }}>{children}</main>
-        <Footer />
+        <AuthProvider>
+          <EditorProvider>
+            <Navbar />
+            <main style={{ minHeight: '100vh' }}>{children}</main>
+            <Footer />
+            <UniversalEditor />
+          </EditorProvider>
+        </AuthProvider>
       </body>
     </html>
   );
