@@ -56,9 +56,23 @@ export default function UniversalEditor() {
                   <label>Celý obsah</label>
                   <textarea name="content" value={formData.content || ''} onChange={handleChange} required className={styles.tall} />
                 </div>
+                <div className={styles.inputRow}>
+                  <div className={styles.inputGroup}>
+                    <label>Autor</label>
+                    <input name="author_name" value={formData.author_name || 'MO SRZ Spišská Belá'} onChange={handleChange} />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label>Dôležitosť</label>
+                    <select name="importance" value={formData.importance || 'normal'} onChange={(e) => setFormData({...formData, importance: e.target.value})} className={styles.select}>
+                      <option value="normal">Bežná</option>
+                      <option value="important">Dôležitá</option>
+                      <option value="urgent">Naliehavá</option>
+                    </select>
+                  </div>
+                </div>
                 <div className={styles.inputGroup}>
-                  <label>Kategória</label>
-                  <input name="category" value={formData.category || ''} onChange={handleChange} />
+                  <label>Štítky (oddelené čiarkou)</label>
+                  <input name="tag_input" value={formData.tag_input || (formData.tags ? formData.tags.join(', ') : '')} onChange={(e) => setFormData({...formData, tag_input: e.target.value, tags: e.target.value.split(',').map((t: string) => t.trim())})} placeholder="napr. Brigáda, Preteky" />
                 </div>
               </>
             )}

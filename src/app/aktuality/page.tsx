@@ -1,59 +1,89 @@
+'use client';
 import { supabase } from '@/lib/supabase';
 import NewsFeed from '@/components/NewsFeed';
 import styles from './Aktuality.module.css';
+import { useState, useEffect } from 'react';
 
-async function getNews() {
-  const { data } = await supabase
-    .from('announcements')
-    .select('*')
-    .order('is_pinned', { ascending: false })
-    .order('created_at', { ascending: false });
-  return data || [];
-}
+export default function NewsPage() {
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [documents, setDocuments] = useState<any[]>([]);
+  const [filter, setFilter] = useState<string>('Všetky');
+  const [loading, setLoading] = useState(true);
 
-async function getDates() {
-  const { data } = await supabase
-    .from('important_dates')
-    .select('*')
-    .order('created_at', { ascending: false });
-  return data || [];
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-export default async function NewsPage() {
-  const [announcements, dates] = await Promise.all([getNews(), getDates()]);
+  const fetchData = async () => {
+    const [newsRes, docRes] = await Promise.all([
+      supabase.from('announcements').select('*').order('created_at', { ascending: false }),
+      supabase.from('site_documents').select('*').order('category', { ascending: true })
+    ]);
+    setAnnouncements(newsRes.data || []);
+    setDocuments(docRes.data || []);
+    setLoading(false);
+  };
+
+  const filteredNews = filter === 'Všetky' 
+    ? announcements 
+    : announcements.filter(item => item.importance === filter || (item.tags && item.tags.includes(filter)));
+
+  const tags = ['Všetky', 'urgent', 'important', 'normal', 'Brigády', 'Preteky', 'Oznamy'];
+
+  if (loading) return <div className={styles.loading}>Načítavam...</div>;
 
   return (
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.overlay} />
         <div className={styles.content}>
-          <h1 className={styles.title}>Aktuality</h1>
-          <p className={styles.subtitle}>Najnovšie informácie pre členov MO SRZ Spišská Belá</p>
+          <h1 className={styles.title}>Aktuality & Oznamy</h1>
+          <p className={styles.subtitle}>Oficiálny informačný kanál MO SRZ Spišská Belá</p>
         </div>
       </header>
+
       <div className={styles.container}>
-        <div className={styles.newsGrid}>
-          <div className={styles.mainNews}>
-            <NewsFeed announcements={announcements} />
-          </div>
-          
+        <div className={styles.blogLayout}>
+          {/* Main Feed */}
+          <main className={styles.mainFeed}>
+            <NewsFeed announcements={filteredNews} showAdminControls={true} />
+          </main>
+
+          {/* Sidebar */}
           <aside className={styles.sidebar}>
-            <div className={styles.termCard}>
-              <h3 className={styles.sidebarTitle}>Dôležité termíny 2026</h3>
-              {dates.map((date, i) => (
-                <div key={i} className={styles.termItem}>
-                  <span className={styles.termDate}>{date.date_label}</span>
-                  <p className={styles.termText}>{date.event_description}</p>
-                </div>
-              ))}
-              {dates.length === 0 && <p className={styles.infoText}>Aktuálne nie sú k dispozícii žiadne termíny.</p>}
+            {/* Filter */}
+            <div className={styles.sidebarCard}>
+              <h3 className={styles.sidebarTitle}>Filtrovať podľa obsahu</h3>
+              <div className={styles.tagCloud}>
+                {tags.map(tag => (
+                  <button 
+                    key={tag} 
+                    className={`${styles.tagBtn} ${filter === tag ? styles.activeTag : ''}`}
+                    onClick={() => setFilter(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className={styles.infoCard}>
-              <h3 className={styles.sidebarTitle}>Upozornenie</h3>
-              <p className={styles.infoText}>
-                Nezabudnite na povinnú známku 100. výročia SRZ (5 €).
-              </p>
+            {/* Documents */}
+            <div className={styles.sidebarCard}>
+              <h3 className={styles.sidebarTitle}>Legislatíva & Dokumenty</h3>
+              <div className={styles.documentList}>
+                {documents.map(doc => (
+                  <a key={doc.id} href={doc.url} target="_blank" rel="noopener noreferrer" className={styles.docLink}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>{doc.title}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Dôležité termíny fallback (from previous version) */}
+            <div className={styles.sidebarCard}>
+              <h3 className={styles.sidebarTitle}>Dôležité termíny</h3>
+              <p className={styles.infoText}>Termíny brigád a poplatkov nájdete v príspevkoch so štítkom "important".</p>
             </div>
           </aside>
         </div>

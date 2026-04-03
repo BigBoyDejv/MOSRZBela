@@ -7,9 +7,9 @@ import { EditorProvider } from '@/context/EditorContext';
 import UniversalEditor from '@/components/UniversalEditor';
 
 export const metadata: Metadata = {
-  title: 'Rybky Spišská Belá | Rybolov v srdci Tatier',
+  title: 'MO SRZ Spišská Belá | Rybolov v srdci Tatier',
   description:
-    'Portál pre rybárov v Spišskej Belej. Aktuálne oznamy, povolenia na rybolov a informácie o revíroch pod Tatoami.',
+    'Oficiálny portál MO SRZ Spišská Belá. Aktuálne oznamy, povolenia na rybolov a informácie o revíroch pod Tatrami.',
 };
 
 export default function RootLayout({

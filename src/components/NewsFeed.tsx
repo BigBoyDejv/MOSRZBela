@@ -8,9 +8,10 @@ import { Announcement } from '@/lib/types';
 
 interface NewsFeedProps {
   announcements: Announcement[];
+  showAdminControls?: boolean;
 }
 
-export default function NewsFeed({ announcements }: NewsFeedProps) {
+export default function NewsFeed({ announcements, showAdminControls = false }: NewsFeedProps) {
   const { user } = useAuth();
   const { openEditor } = useEditor();
 

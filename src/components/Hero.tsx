@@ -64,9 +64,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Rybársky Spolok
+          Rybársky spolok
           <br />
-          <span className={styles.titleAccent}>Rybky Spišská Belá</span>
+          <span className={styles.titleAccent}>MO SRZ Spišská Belá</span>
         </motion.h1>
 
         <motion.p

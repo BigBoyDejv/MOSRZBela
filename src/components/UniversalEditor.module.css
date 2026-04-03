@@ -91,6 +91,31 @@
   resize: vertical;
 }
 
+.inputRow {
+  display: flex;
+  gap: 2rem;
+}
+
+.inputRow > div {
+  flex: 1;
+}
+
+.select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  color: var(--text-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  appearance: none;
+}
+
+.select option {
+  background: #0f1c14;
+  color: var(--text-white);
+}
+
 .footer {
   padding: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);

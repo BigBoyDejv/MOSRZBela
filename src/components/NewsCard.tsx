@@ -6,7 +6,7 @@ import { Announcement } from '@/lib/types';
 import styles from './NewsCard.module.css';
 
 interface NewsProps {
-  item: Announcement;
+  item: Announcement & { author_name?: string; tags?: string[]; importance?: string };
   index: number;
 }
 
@@ -29,30 +29,32 @@ export default function NewsCard({ item, index }: NewsProps) {
     }
   };
 
-  const formattedDate = new Date(item.created_at).toLocaleDateString('sk-SK', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+  const getTimeSince = (date: string) => {
+    const now = new Date();
+    const then = new Date(date);
+    const diff = now.getTime() - then.getTime();
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    if (hours < 1) return 'práve teraz';
+    if (hours < 24) return `pred ${hours} h`;
+    return `pred ${Math.floor(hours / 24)} dňami`;
+  };
 
   return (
     <motion.article
-      className={`${styles.card} ${item.is_pinned ? styles.pinned : ''}`}
+      className={`${styles.card} ${item.importance === 'urgent' ? styles.urgent : ''}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ delay: index * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Top row: badge + actions + date */}
+      {/* Top row: author + time + actions */}
       <div className={styles.topRow}>
-        <div className={styles.badges}>
-          <span className={styles.categoryBadge}>{item.category}</span>
-          {item.is_pinned && (
-            <span className={styles.pinnedBadge}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.pinIcon}><path d="M12 2v8"/><path d="m16 4-4 4-4-4"/><path d="M4 12v8h16v-8h-4.5l-1.5-2h-4l-1.5 2Z"/></svg>
-              Pripnuté
-            </span>
-          )}
+        <div className={styles.meta}>
+          <div className={styles.authorIcon}>{item.author_name?.charAt(0) || 'M'}</div>
+          <div className={styles.metaText}>
+            <span className={styles.author}>{item.author_name || 'MO SRZ Spišská Belá'}</span>
+            <span className={styles.time}>{getTimeSince(item.created_at)}</span>
+          </div>
         </div>
         
         {user && (
@@ -65,21 +67,35 @@ export default function NewsCard({ item, index }: NewsProps) {
             </button>
           </div>
         )}
-
-        <time className={styles.date}>{formattedDate}</time>
       </div>
 
       {/* Content */}
-      <h3 className={styles.title}>{item.title}</h3>
-      <p className={styles.excerpt}>{item.excerpt}</p>
+      <div className={styles.content}>
+        <h3 className={styles.title}>{item.title}</h3>
+        <p className={styles.excerpt}>{item.excerpt}</p>
+        
+        {/* Tags */}
+        <div className={styles.tags}>
+          <span className={`${styles.importanceTag} ${styles[item.importance || 'normal']}`}>
+            {item.importance === 'urgent' ? 'Naliehavé' : item.importance === 'important' ? 'Dôležité' : 'Bežné'}
+          </span>
+          {item.tags?.map((tag: string) => (
+            <span key={tag} className={styles.tag}>#{tag}</span>
+          ))}
+        </div>
+      </div>
 
-      {/* Read more */}
-      <button className={styles.readMore}>
-        <span>Čítať viac</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </button>
+      {/* Interaction Footer */}
+      <footer className={styles.footer}>
+        <button className={styles.actionBtn}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Komentovať</span>
+        </button>
+        <button className={styles.actionBtn}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          <span>Zdieľať</span>
+        </button>
+      </footer>
 
       {/* Decorative glow line */}
       <div className={styles.glowLine} />

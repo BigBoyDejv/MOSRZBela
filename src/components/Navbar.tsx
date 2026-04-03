@@ -27,15 +27,14 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 8c0 4.5-4.5 9-9 9-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5c4.5 0 9 4.5 9 9Z" />
-              <path d="M12 12c.5 0 1 .5 1 1s-.5 1-1 1-1-.5-1-1 .5-1 1-1Z" />
-              <path d="M16 12s-2-2-4-2" />
-              <path d="M7 12s2-2 4-2" />
-            </svg>
+            <img 
+              src="/images/logo.jpg" 
+              alt="MO SRZ Spišská Belá" 
+              className={styles.officialLogo} 
+            />
           </div>
           <div className={styles.logoText}>
-            <span className={styles.logoTitle}>Rybky</span>
+            <span className={styles.logoTitle}>MO SRZ</span>
             <span className={styles.logoSub}>Spišská Belá</span>
           </div>
         </a>
